@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/board.css}">
+</head>
+<body>
+<div th:insert="common/header.html" id="header"></div>
+<h1 th:text="${title}"></h1>
+<a th:href="@{/post}">글쓰기</a>
+<table>
+	<thead>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="b : ${list}">
+			<td>
+				<span th:text="${b.id}"></span>
+			</td>
+			<td>
+				<a th:href="@{'/post/' + ${b.id}}"><span th:text="${b.title}"></span></a>
+			</td>
+			<td>
+				<span th:text="${b.writer}"></span>
+			</td>
+			<td>
+				<span th:text="${#temporals.format(b.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div th:insert="common/footer.html" id="footer"></div>
+</body>
+</html>

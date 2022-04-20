@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul
+    username: ssafy
+    password: ssafy
+    hikari:      auto-commit: false
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 50
+      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+      pool-name: mypool
+  jpa:    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    properties:      hibernate:
+        '[format_sql]': true
+    hibernate:      ddl-auto: update
+  mvc:    hiddenmethod:      filter:        enabled: true
+  main:
+    allow-bean-definition-overriding: true
+        
+logging:  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder : TRACE
